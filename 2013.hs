@@ -72,4 +72,23 @@ drop' n (Cons _ xs) = drop' (n - 1) xs
 -- 5
 
 
--- a
+-- a (ASK)
+for :: Int -> Int -> a -> (a -> a) -> a
+for n m s f | n>m = s
+            | otherwise = for (n+1) m (f s) f
+
+
+pow :: Float -> Int -> Float  -- pow 2.0 3 => 8.0
+pow a n = for 1 (n-1) a (a*)
+
+
+sumints :: Int -> Int 
+sumints n = error "not implemented"
+
+
+repeatuntil :: a -> (a -> Bool) -> (a -> a) -> a
+repeatuntil s p f | p s = s
+                  | otherwise = repeatuntil (f s) p f
+
+log2 :: Float -> Float
+log2 n = repeatuntil n (< 2) (/2)
