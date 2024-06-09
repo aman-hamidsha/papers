@@ -129,3 +129,10 @@ Thus, app' "abc" "de" evaluates to "abcde" by folding the elements of the first 
 
 
 -}
+
+filter' :: (a -> Bool) -> [a]-> [a]
+filter' p = foldr (\x acc -> if p x then [x]++acc else acc) [] 
+
+
+reverse' :: [a] -> [a]
+reverse' = foldr (\x acc -> acc ++ [x]) [] 
