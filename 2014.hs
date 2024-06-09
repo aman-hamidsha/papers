@@ -136,3 +136,60 @@ filter' p = foldr (\x acc -> if p x then [x]++acc else acc) []
 
 reverse' :: [a] -> [a]
 reverse' = foldr (\x acc -> acc ++ [x]) [] 
+
+{-
+Here's how the function works:
+
+foldr processes each element of the list from right to left, applying the function (\x acc -> acc ++ [x]).
+The initial accumulator is an empty list: [].
+Given the input:
+
+The list is [1, 2, 3].
+Step-by-Step Evaluation:
+Initial State:
+
+The list is [1, 2, 3].
+The initial accumulator (acc) is [].
+Applying foldr from right to left on [1, 2, 3]:
+
+Iteration 1:
+Element: 3
+Accumulator (acc): []
+Function Application: (\x acc -> acc ++ [x]) 3 []
+Result: [] ++ [3] which is [3]
+New Accumulator: [3]
+Iteration 2:
+Element: 2
+Accumulator (acc): [3]
+Function Application: (\x acc -> acc ++ [x]) 2 [3]
+Result: [3] ++ [2] which is [3, 2]
+New Accumulator: [3, 2]
+Iteration 3:
+Element: 1
+Accumulator (acc): [3, 2]
+Function Application: (\x acc -> acc ++ [x]) 1 [3, 2]
+Result: [3, 2] ++ [1] which is [3, 2, 1]
+New Accumulator: [3, 2, 1]
+After all iterations are complete, the final value of the accumulator is [3, 2, 1], which is the reversed list.
+
+Summary:
+Initial list: [1, 2, 3]
+After folding:
+[] ++ [3] = [3]
+[3] ++ [2] = [3, 2]
+[3, 2] ++ [1] = [3, 2, 1]
+Final reversed list: [3, 2, 1]
+Thus, reverse' [1, 2, 3] evaluates to [3, 2, 1] by folding the elements of the list from right to left and appending each element to the accumulator.
+
+
+
+
+
+
+
+
+
+
+
+
+-}
